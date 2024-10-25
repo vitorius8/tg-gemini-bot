@@ -3,17 +3,20 @@ from io import BytesIO
 import google.generativeai as genai
 import PIL.Image
 
-from .config import GOOGLE_API_KEY, generation_config, safety_settings, gemini_err_info, new_chat_info
+gemini_model="gemini-1.5-flash"
+from .config import GOOGLE_API_KEY, generation_config, safety_settings, gemini_err_info, new_chat_info, system_instruction,gemini_model
 
 genai.configure(api_key=GOOGLE_API_KEY[0])
 
 model_usual = genai.GenerativeModel(
-    model_name="gemini-pro",
+    model_name=gemini_model,
+    system_instruction=system_instruction,
     generation_config=generation_config,
     safety_settings=safety_settings)
 
 model_vision = genai.GenerativeModel(
-    model_name="gemini-pro-vision",
+    model_name=gemini_model,
+    system_instruction=system_instruction,
     generation_config=generation_config,
     safety_settings=safety_settings)
 
